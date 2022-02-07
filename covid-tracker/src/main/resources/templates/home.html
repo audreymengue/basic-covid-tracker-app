@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Corona-Virus Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+<h1>Covid-19 tracker</h1>
+<p>This application lists the number of cases of covid-19 reported daily over the world.</p>
+
+<div class="jumbotron">
+    <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+    <p class="lead">Total Number of cases as of today!</p>
+    <hr class="my-4">
+    <p>
+        <span>New cases since previous day </span>
+        <span th:text="${totalNewCases}"></span>
+    </p>
+</div>
+
+
+<table class="table table-dark">
+    <tr >
+        <th>State</th>
+        <th>Country</th>
+        <th>Total cases reported</th>
+        <th>Changes since last day</th>
+    </tr>
+    <tr th:each="locationStat :  ${locationStats}">
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.latestReportedCases}">0</td>
+        <td th:text="${locationStat.diffFromPreviousDay}">0</td>
+
+    </tr>
+</table>
+
+</div>
+
+</body>
+</html>
